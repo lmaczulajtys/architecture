@@ -12,6 +12,10 @@ workspace "Dependency Track" "Dependency Track with Trivy Server" {
         packageRepositoriesSystem = softwareSystem "Package Repositories" {
             tag "External"
         }
+
+        vulnerabilitiesDatabasesSystem = softwareSystem "Vulnerabilities Databases" {
+            tag "External"
+        }
         
         dependencyTrackSystem = softwareSystem "Dependency Track" {
 
@@ -29,6 +33,7 @@ workspace "Dependency Track" "Dependency Track with Trivy Server" {
             apiServer -> database "Store data"
             apiServer -> trivyServer "Analyze components for vulnerabilities"
             apiServer -> packageRepositoriesSystem "Fetch packages metadata"
+            apiServer -> vulnerabilitiesDatabasesSystem "Fetch vulnerabilities data"
         }
         
         developer -> sourceControlSystem.appRepository "Release new version"
